@@ -20,3 +20,14 @@ region_rect = Rect2(16.2708, 119.375, 17.5247, 17.1742)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_k6he4")
+
+[node name="timeout-axes" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="timeout-swords" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="timeout-axes" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="timeout-swords" to="." method="_on_timeoutswords_timeout"]
