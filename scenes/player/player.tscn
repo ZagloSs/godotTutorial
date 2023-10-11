@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkmcsyxlilncc"]
+
+[ext_resource type="Texture2D" uid="uid://bcjysu2cxc0wl" path="res://graphics/Tilemap/tilemap.png" id="1_11082"]
+[ext_resource type="Script" path="res://scenes/sripts/player.gd" id="1_auqya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6he4"]
+size = Vector2(72, 40)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(179, 134)
+script = ExtResource("1_auqya")
+
+[node name="man" type="Sprite2D" parent="."]
+position = Vector2(1, 1.00001)
+scale = Vector2(7.29411, 7.29411)
+texture = ExtResource("1_11082")
+region_enabled = true
+region_rect = Rect2(16.2708, 119.375, 17.5247, 17.1742)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_k6he4")

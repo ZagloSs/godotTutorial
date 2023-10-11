@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3twpdac5v33o"]
+
+[ext_resource type="Script" path="res://scenes/sripts/level.gd" id="1_ixlm8"]
+[ext_resource type="Texture2D" uid="uid://b3srx8txvvks7" path="res://graphics/Tilemap/tilemap_packed.png" id="3_s16i5"]
+[ext_resource type="PackedScene" uid="uid://dkmcsyxlilncc" path="res://scenes/player/player.tscn" id="4_ibaaf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hletn"]
+size = Vector2(219, 83)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ixlm8")
+
+[node name="Player" parent="." instance=ExtResource("4_ibaaf")]
+z_index = 1
+position = Vector2(570, 507)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(590, 132)
+
+[node name="TilemapPacked" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(1.20001, -26.2)
+scale = Vector2(13.4773, 13.4773)
+texture = ExtResource("3_s16i5")
+region_enabled = true
+region_rect = Rect2(161, 17, 30, 16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-575.8, -108.2)
+polygon = PackedVector2Array(377, 186, 469, 190, 467, 12, 687, 16, 687, 190, 781, 190, 777, -24, 379, -26)
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+position = Vector2(4.20001, -2.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+position = Vector2(-2.70001, 40.7)
+shape = SubResource("RectangleShape2D_hletn")
+
+[connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]
